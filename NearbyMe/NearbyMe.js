@@ -2,6 +2,7 @@
 
 const express = require('express');
 const axios = require('axios');
+const { get } = require('http');
 const app = express();
 require('dotenv').config();
 
@@ -25,19 +26,13 @@ const getDistance = async (origins, destinations) => {
     return { distanceText, distanceValue };
 }
 
-// Endpoint: /nearby
-app.get('/nearby', async (req, res) => {
-    const { lat, lng } = req.query;
 
-    if (!lat || !lng) {
-        return res.status(400).json({ error: "Latitude and Longitude are required." });
-    }
+//get places data 
+getPlacesData = async (lat, lng) => {
 
     let hospitals = [];
-    let policeStations = [];
-    let fireStations = [];
-
-    try {
+        let policeStations = [];
+        let fireStations = [];
         const serpApiUrl = "https://serpapi.com/search.json";
 
         async function searchPlaces(query) {
@@ -86,11 +81,26 @@ app.get('/nearby', async (req, res) => {
                 .slice(0, 5);
         });
 
-        res.json({
-            hospitals: places.hospitals,
-            policeStations: places.policeStations,
-            fireStations: places.fireStations
-        });
+        return(places);
+}
+
+
+
+
+
+// Endpoint: /nearby
+app.get('/nearby', async (req, res) => {
+    const { lat, lng } = req.query;
+
+    if (!lat || !lng) {
+        return res.status(400).json({ error: "Latitude and Longitude are required." });
+    }
+
+    
+    try {
+        const placesData = await getPlacesData(lat, lng); 
+        res.json({ places: placesData });
+        
 
     } catch (error) {
         console.error(error);
