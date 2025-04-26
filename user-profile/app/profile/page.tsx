@@ -1,36 +1,26 @@
-import Link from "next/link"
-import ProfileForm from "@/components/profile-form"
-import { ProfileCompleteness } from "@/components/profile-completeness"
-import { SkipToContent } from "@/components/skip-to-content"
+import ProfileForm from "@/components/profile-form";
+import { SkipToContent } from "@/components/skip-to-content";
+import { UserButton } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
-export default function ProfilePage() {
+export default async function ProfilePage() {
+  const user = await currentUser();
+  if (!user) redirect("/");
+  // console.log("User data:", user);
+
   // Mock user data - in a real app, this would come from authentication
-  const mockUser = {
-    firstName: "Jane",
-    lastName: "Doe",
-    email: "jane.doe@example.com",
-  }
+  const usr = {
+    firstName: `${user?.firstName}`,
+    lastName: `${user?.lastName}`,
+    email: `${user?.emailAddresses[0]?.emailAddress}`,
+  };
 
-  const mockUserId = "user_abc123"
-
-  // Mock profile data for the completeness indicator
-  const mockProfile = {
-    fullName: "Jane Doe",
-    dateOfBirth: "1990-08-15",
-    gender: "Female",
-    primaryLanguage: "English",
-    phone: "+1-512-123-4567",
-    email: "jane.doe@example.com",
-    emergencyContacts: [
-      { name: "John Doe", relation: "Brother", phone: "+1-512-765-4321", email: "john.doe@example.com", priority: 1 },
-    ],
-    communicationPreferences: {
-      preferredMethod: "SMS",
-    },
-    deviceInfo: {
-      deviceType: "iPhone",
-    },
-  }
+  // // Mock profile data for the completeness indicator
+  // const profile = {
+  //   fullName: `${user?.firstName} ${user?.lastName}`,
+  //   email: `${user?.emailAddresses[0]?.emailAddress}`,
+  // };
 
   return (
     <>
@@ -40,16 +30,17 @@ export default function ProfilePage() {
           <div className="container mx-auto px-4">
             <div className="flex justify-between items-center">
               <div className="flex items-center space-x-4">
-                <img src="/austin-logo-white.png" alt="City of Austin" className="h-10" />
-                <h1 className="text-xl font-semibold">Emergency Profile System</h1>
+                <img
+                  src="/austin-logo-white.png"
+                  alt="City of Austin"
+                  className="h-10"
+                />
+                <h1 className="text-xl font-semibold">
+                  Emergency Profile System
+                </h1>
               </div>
               <div className="flex items-center space-x-2">
-                <span className="text-sm">
-                  {mockUser.firstName} {mockUser.lastName}
-                </span>
-                <Link href="/" className="text-sm underline hover:text-blue-200">
-                  Sign out
-                </Link>
+                <UserButton />
               </div>
             </div>
           </div>
@@ -58,20 +49,23 @@ export default function ProfilePage() {
         <div className="container mx-auto px-4" id="main-content" tabIndex={-1}>
           <div className="max-w-4xl mx-auto">
             <div className="mb-6">
-              <ProfileCompleteness profile={mockProfile} />
+              {/* <ProfileCompleteness profile={profile} /> */}
             </div>
 
-            <h1 className="text-3xl font-bold text-[#00437c] mb-6">Your Emergency Profile</h1>
+            <h1 className="text-3xl font-bold text-[#00437c] mb-6">
+              Your Emergency Profile
+            </h1>
 
             <p className="text-gray-600 mb-8">
-              Please complete your emergency profile information. This information will be used by emergency services to
-              provide better assistance in case of an emergency.
+              Please complete your emergency profile information. This
+              information will be used by emergency services to provide better
+              assistance in case of an emergency.
             </p>
 
-            <ProfileForm userId={mockUserId} user={mockUser} />
+            <ProfileForm user={usr} />
           </div>
         </div>
       </main>
     </>
-  )
+  );
 }
