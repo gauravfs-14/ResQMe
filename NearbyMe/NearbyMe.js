@@ -3,16 +3,13 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
-
 require('dotenv').config();
 
-
-const PORT = process.env.PORT || 3000;  // Fallback to 3000 if not specified
-
+const PORT = process.env.PORT || 3000;
 const SERPAPI_KEY = process.env.SERPAPI_KEY;
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
-
+// Helper to get distance
 const getDistance = async (origins, destinations) => {
     const distanceResponse = await axios.get('https://maps.googleapis.com/maps/api/distancematrix/json', {
         params: {
@@ -23,20 +20,19 @@ const getDistance = async (origins, destinations) => {
         }
     });
 
-    return(distanceResponse.data.rows[0].elements[0].distance.text);
+    const distanceText = distanceResponse.data.rows[0].elements[0]?.distance?.text || "Unknown";
+    const distanceValue = distanceResponse.data.rows[0].elements[0]?.distance?.value || Infinity; // value in meters
+    return { distanceText, distanceValue };
 }
 
-
-// Endpoint: /nearby?lat=30.2672&lng=-97.7431
+// Endpoint: /nearby
 app.get('/nearby', async (req, res) => {
     const { lat, lng } = req.query;
 
-    // Validate input
     if (!lat || !lng) {
         return res.status(400).json({ error: "Latitude and Longitude are required." });
     }
 
-    // Initialize your result arrays
     let hospitals = [];
     let policeStations = [];
     let fireStations = [];
@@ -44,7 +40,6 @@ app.get('/nearby', async (req, res) => {
     try {
         const serpApiUrl = "https://serpapi.com/search.json";
 
-        // Helper function to search a specific type
         async function searchPlaces(query) {
             const params = {
                 engine: "google_maps",
@@ -53,7 +48,6 @@ app.get('/nearby', async (req, res) => {
                 q: query,
                 api_key: SERPAPI_KEY
             };
-
             const response = await axios.get(serpApiUrl, { params });
             const places = response.data.local_results || [];
 
@@ -64,40 +58,39 @@ app.get('/nearby', async (req, res) => {
             }));
         }
 
-        // Run 3 searches one after another
         hospitals = await searchPlaces("hospitals");
         policeStations = await searchPlaces("police stations");
         fireStations = await searchPlaces("fire stations");
 
-        hospitals = hospitals.slice(0, 5);
-        policeStations = policeStations.slice(0, 5);
-        fireStations = fireStations.slice(0, 5);
+        const places = { hospitals, policeStations, fireStations };
 
-        places= {
-            hospitals,
-            policeStations,
-            fireStations
-        }
+        // 1. Add distance info to each place
         await Promise.all(
             Object.values(places).flatMap(list =>
                 list.map(async (place) => {
-                    place.distance = await getDistance(
+                    const { distanceText, distanceValue } = await getDistance(
                         `${lat},${lng}`,
                         `${place.coordinates.latitude},${place.coordinates.longitude}`
                     );
+                    place.distance = distanceText;
+                    place.distanceValue = distanceValue; // for sorting
                 })
             )
         );
-        
-        // console.log(finalJson);
 
-        res.json({
-            hospitals,
-            policeStations,
-            fireStations
+        // 2. Sort each list by distanceValue (smallest first) and slice top 5
+        Object.keys(places).forEach(key => {
+            places[key] = places[key]
+                .filter(place => place.distanceValue !== Infinity) // Remove invalid places
+                .sort((a, b) => a.distanceValue - b.distanceValue)
+                .slice(0, 5);
         });
 
-
+        res.json({
+            hospitals: places.hospitals,
+            policeStations: places.policeStations,
+            fireStations: places.fireStations
+        });
 
     } catch (error) {
         console.error(error);
