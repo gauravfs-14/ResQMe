@@ -9,6 +9,23 @@ require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 const SERPAPI_KEY = process.env.SERPAPI_KEY;
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
+const OPENWEATHER_API_KEY = process.env.OPENWEATHER_API_KEY;
+
+const getWeatherData = async (lat, lng) => {
+    const weatherResponse = await axios.get(`https://api.openweathermap.org/data/2.5/weather`, {
+        params: {
+            lat: lat,
+            lon: lng,
+            appid: OPENWEATHER_API_KEY,
+            units: "imperial"
+        }
+    });
+
+    const weatherData = weatherResponse.data;
+    return ({city : weatherData.name, 
+        weather : weatherData.weather,})
+}
+
 
 // Helper to get distance
 const getDistance = async (origins, destinations) => {
@@ -23,7 +40,8 @@ const getDistance = async (origins, destinations) => {
 
     const distanceText = distanceResponse.data.rows[0].elements[0]?.distance?.text || "Unknown";
     const distanceValue = distanceResponse.data.rows[0].elements[0]?.distance?.value || Infinity; // value in meters
-    return { distanceText, distanceValue };
+    const myLocation = distanceResponse.data.origin_addresses[0];
+    return { myLocation, distanceText, distanceValue };
 }
 
 
@@ -63,10 +81,11 @@ getPlacesData = async (lat, lng) => {
         await Promise.all(
             Object.values(places).flatMap(list =>
                 list.map(async (place) => {
-                    const { distanceText, distanceValue } = await getDistance(
+                    const { myLocation, distanceText, distanceValue } = await getDistance(
                         `${lat},${lng}`,
                         `${place.coordinates.latitude},${place.coordinates.longitude}`
                     );
+                    place.myLocation = myLocation; // for display
                     place.distance = distanceText;
                     place.distanceValue = distanceValue; // for sorting
                 })
@@ -98,8 +117,10 @@ app.get('/nearby', async (req, res) => {
 
     
     try {
+        const weatherData = await getWeatherData(lat, lng);
+        const { city, weather } = weatherData;
         const placesData = await getPlacesData(lat, lng); 
-        res.json({ places: placesData });
+        res.json({city:city, weather: weather, places: placesData });
         
 
     } catch (error) {
