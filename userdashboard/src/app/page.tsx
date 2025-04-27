@@ -1,4 +1,6 @@
-// src/app/page.tsx
+"use client";
+
+import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,12 +13,13 @@ import {
   MessageCircle,
 } from "lucide-react";
 
+import Chatbot from "@/components/chatbot/chatbot";
 
 export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      
+      <Chatbot/>
       <section className="w-full h-[75vh] bg-gradient-to-b from-rose-50 to-rose-200 dark:from-gray-900 dark:to-rose-950/70 relative">
   <div className="h-full w-full flex flex-col items-center justify-center text-center px-4 max-w-4xl mx-auto">
     <div className="mb-2 animate-pulse duration-3000">
