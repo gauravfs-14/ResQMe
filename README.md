@@ -26,7 +26,7 @@ The goal: **rapid, context-aware emergency assistance with minimal user effort.*
 | Frontend      | Next.js, TailwindCSS, TypeScript             |
 | Backend       | Node.js (Express.js), Prisma ORM, TypeScript |
 | Database      | PostgreSQL                                   |
-| AI/Triage     | Local LLM API (Navigator / Ollama)           |
+| AI/Triage     | Local LLM API (Navigator by WebAI)           |
 | Messaging     | LoopMessage (for iMessage/SMS SOS triggers)  |
 | Deployment    | Render / Vercel (can be self-hosted too)     |
 | External APIs | SERP API (for Nearby Context)                |
