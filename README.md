@@ -151,3 +151,15 @@ Would you also like me to give you:
 If yes, I can append them at the end of this README neatly too! 🚀
 
 Would you like that? (just say: `yes, add env and examples too`) 🔥
+
+## 👥 Team Members
+
+- **Amul Poudel**  
+  [GitHub Profile](https://github.com/Amul-byte)
+
+- **Samar Ranjit**  
+  [GitHub Profile](https://github.com/samarranjit)
+
+- **Gaurab Chhetri**  
+  [GitHub Profile](https://github.com/gauravfs-14)
+
