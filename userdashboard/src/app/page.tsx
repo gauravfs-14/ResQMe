@@ -29,7 +29,7 @@ export default function HomePage() {
             className="bg-red-600 hover:bg-red-700 text-white font-medium px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all"
             asChild
           >
-            <Link href="/signup">
+            <Link href="https://res-q-me.vercel.app/">
               Get Help Now <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </Button>
@@ -187,7 +187,7 @@ export default function HomePage() {
                 className="bg-white text-red-600 hover:bg-gray-100 font-bold px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all"
                 asChild
               >
-                <Link href="/signup">
+                <Link href="https://res-q-me.vercel.app/">
                   Sign Up Now <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
