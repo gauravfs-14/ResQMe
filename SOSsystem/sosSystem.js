@@ -15,16 +15,17 @@ app.get('/', (req, res) => {
 
 // Webhook route
 app.post('/webhook', async (req, res) => {
-    console.log("📥 New message received at /webhook:");
+    console.log("📥 New webhook received:");
     console.log(JSON.stringify(req.body, null, 2));
 
-    const { from, recipient, text } = req.body;
+    const { alert_type, text, recipient } = req.body;
 
-    // Avoid replying to your own messages
-    if (from !== recipient) {
+    // Only respond if it's not a "message_sent" system alert
+    if (alert_type !== "message_sent") {
+        console.log("✅ Real user message detected. Sending auto-reply...");
         await sendMessage("Hello from Server!", recipient);
     } else {
-        console.log("⚡ Skipping self-triggered message to avoid infinite loop");
+        console.log("⚡ System message detected (message_sent). Skipping auto-reply.");
     }
 
     res.status(200).send('Webhook received!');
@@ -44,7 +45,7 @@ const sendMessage = async (message, number) => {
                 'Loop-Secret-Key': "1CZCa-zSYlOk-uscwVq_KJ0UVDFUDWpSG3RPJcBfGAR4GOSoIbWvs_A4SyJ6Rv7f"
             }
         });
-        console.log("📤 Message sent successfully:", response.message);
+        console.log("📤 Message sent successfully:", response.text);
     }
     catch (error) {
         console.error("❌ Error sending message:", error.message);
