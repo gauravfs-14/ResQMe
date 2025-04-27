@@ -14,21 +14,22 @@ app.get('/', (req, res) => {
 });
 
 // Webhook route
-app.post('/webhook', async(req, res) => {
+app.post('/webhook', async (req, res) => {
     console.log("📥 New message received at /webhook:");
-    const message = JSON.stringify(req.body, null, 2);
-    console.log(JSON.stringify(req.body, null, 2)); // Pretty print the JSON
+    console.log(JSON.stringify(req.body, null, 2));
 
+    const { from, recipient, text } = req.body;
 
-    await sendMessage("Hello from Server!", req.body.recipient); // Send a test message to the sender
-    // Important: Always quickly respond to the webhook
-    res.status(200).send('Webhook received!', message);
+    // Avoid replying to your own messages
+    if (from !== recipient) {
+        await sendMessage("Hello from Server!", recipient);
+    } else {
+        console.log("⚡ Skipping self-triggered message to avoid infinite loop");
+    }
 
-
-
-
-    // TODO: You can add your custom processing logic here (ex: auto-reply)
+    res.status(200).send('Webhook received!');
 });
+
 
 
 const sendMessage = async (message, number) => {
