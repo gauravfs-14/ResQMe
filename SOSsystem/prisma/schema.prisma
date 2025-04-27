@@ -1,0 +1,65 @@
+// prisma/schema.prisma
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model UserProfile {
+  id                         Int                       @id @default(autoincrement())
+  fullName                   String
+  dateOfBirth                String
+  gender                     String
+  primaryLanguage            String
+  phone                      String
+  email                      String                    @unique
+  medicalConditions          String[]
+  allergies                  String[]
+  currentMedications         Medication[] // One-to-many
+  emergencyContacts          EmergencyContact[] // One-to-many
+  communicationPreferences   CommunicationPreferences? @relation(fields: [communicationPreferencesId], references: [id])
+  communicationPreferencesId Int?                      @unique
+  deviceInfo                 DeviceInfo?               @relation(fields: [deviceInfoId], references: [id])
+  deviceInfoId               Int?                      @unique
+  locationTrackingConsent    Boolean
+  additionalNotes            String?
+  createdAt                  DateTime                  @default(now())
+}
+
+model Medication {
+  id            Int         @id @default(autoincrement())
+  name          String
+  purpose       String
+  dosage        String
+  userProfileId Int
+  userProfile   UserProfile @relation(fields: [userProfileId], references: [id])
+}
+
+model EmergencyContact {
+  id            Int         @id @default(autoincrement())
+  name          String
+  relation      String
+  phone         String
+  email         String
+  priority      Int
+  userProfileId Int
+  userProfile   UserProfile @relation(fields: [userProfileId], references: [id])
+}
+
+model CommunicationPreferences {
+  id              Int          @id @default(autoincrement())
+  preferredMethod String
+  backupMethod    String
+  userProfile     UserProfile?
+}
+
+model DeviceInfo {
+  id              Int          @id @default(autoincrement())
+  deviceType      String
+  usesLoopMessage Boolean
+  userProfile     UserProfile?
+}
