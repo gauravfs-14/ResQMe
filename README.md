@@ -139,19 +139,6 @@ Awesome! Here's your **Mini App Connection Diagram** + your earlier **Mini Apps 
 - **Incident Reporting Analytics:** Post-incident analytics for responders and city authorities.
 - **Decentralized Hosting:** Explore using P2P decentralized hosting for critical infrastructure resilience.
 
----
-
-Would you also like me to give you:
-
-- A `.env.example` template
-- Example **User Profile JSON**
-- Example **SOS Alert JSON**
-
-??  
-If yes, I can append them at the end of this README neatly too! 🚀
-
-Would you like that? (just say: `yes, add env and examples too`) 🔥
-
 ## 👥 Team Members
 
 - **Amul Poudel**  
