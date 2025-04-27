@@ -1,0 +1,184 @@
+{
+    "city": "Austin",
+    "weather": [
+      {
+        "id": 803,
+        "main": "Clouds",
+        "description": "broken clouds",
+        "icon": "04d"
+      }
+    ],
+    "places": {
+      "hospitals": [
+        {
+          "name": "U T Medical Branch",
+          "address": "1005 Congress Ave., Austin, TX 78701",
+          "coordinates": {
+            "latitude": 30.2720098,
+            "longitude": -97.7408639
+          },
+          "myLocation": "468 Congress Ave., Austin, TX 78701, USA",
+          "distance": "0.7 km",
+          "distanceValue": 747
+        },
+        {
+          "name": "Dell Seton Medical Center at The University of Texas",
+          "address": "1500 Red River St, Austin, TX 78701",
+          "coordinates": {
+            "latitude": 30.27651,
+            "longitude": -97.7338352
+          },
+          "myLocation": "468 Congress Ave., Austin, TX 78701, USA",
+          "distance": "2.3 km",
+          "distanceValue": 2313
+        },
+        {
+          "name": "St. David's Medical Center",
+          "address": "919 E 32nd St, Austin, TX 78705",
+          "coordinates": {
+            "latitude": 30.2898575,
+            "longitude": -97.7260089
+          },
+          "myLocation": "468 Congress Ave., Austin, TX 78701, USA",
+          "distance": "4.2 km",
+          "distanceValue": 4181
+        },
+        {
+          "name": "Ascension Seton Medical Center Austin",
+          "address": "1201 W 38th St, Austin, TX 78705",
+          "coordinates": {
+            "latitude": 30.3052081,
+            "longitude": -97.7464296
+          },
+          "myLocation": "468 Congress Ave., Austin, TX 78701, USA",
+          "distance": "5.8 km",
+          "distanceValue": 5790
+        },
+        {
+          "name": "Cornerstone Specialty Hospitals Austin",
+          "address": "4207 Burnet Rd, Austin, TX 78756",
+          "coordinates": {
+            "latitude": 30.3118919,
+            "longitude": -97.7433067
+          },
+          "myLocation": "468 Congress Ave., Austin, TX 78701, USA",
+          "distance": "6.7 km",
+          "distanceValue": 6680
+        }
+      ],
+      "policeStations": [
+        {
+          "name": "Valero",
+          "address": "900 N Interstate Hwy 35, Austin, TX 78701",
+          "coordinates": {
+            "latitude": 30.2689588,
+            "longitude": -97.7340536
+          },
+          "myLocation": "468 Congress Ave., Austin, TX 78701, USA",
+          "distance": "1.2 km",
+          "distanceValue": 1220
+        },
+        {
+          "name": "City of Austin Police Department",
+          "address": "715 E 8th St, Austin, TX 78701",
+          "coordinates": {
+            "latitude": 30.2675289,
+            "longitude": -97.7347429
+          },
+          "myLocation": "468 Congress Ave., Austin, TX 78701, USA",
+          "distance": "1.3 km",
+          "distanceValue": 1286
+        },
+        {
+          "name": "Austin Police Chief",
+          "address": "715 E 8th St, Austin, TX 78701",
+          "coordinates": {
+            "latitude": 30.2675289,
+            "longitude": -97.7347429
+          },
+          "myLocation": "468 Congress Ave., Austin, TX 78701, USA",
+          "distance": "1.3 km",
+          "distanceValue": 1286
+        },
+        {
+          "name": "Austin City Marshal",
+          "address": "715 E 8th St, Austin, TX 78701",
+          "coordinates": {
+            "latitude": 30.2678442,
+            "longitude": -97.735695
+          },
+          "myLocation": "468 Congress Ave., Austin, TX 78701, USA",
+          "distance": "1.4 km",
+          "distanceValue": 1371
+        },
+        {
+          "name": "Austin Water",
+          "address": "625 E 10th St, Austin, TX 78701",
+          "coordinates": {
+            "latitude": 30.2696162,
+            "longitude": -97.734702
+          },
+          "myLocation": "468 Congress Ave., Austin, TX 78701, USA",
+          "distance": "1.8 km",
+          "distanceValue": 1795
+        }
+      ],
+      "fireStations": [
+        {
+          "name": "Austin Fire Station 1",
+          "address": "William Sidney Porter House, 401 E 5th St., Austin, TX 78701",
+          "coordinates": {
+            "latitude": 30.2657758,
+            "longitude": -97.7394027
+          },
+          "myLocation": "468 Congress Ave., Austin, TX 78701, USA",
+          "distance": "0.6 km",
+          "distanceValue": 556
+        },
+        {
+          "name": "Austin Fire Station 4",
+          "address": "1000 Blanco St, Austin, TX 78703",
+          "coordinates": {
+            "latitude": 30.2766126,
+            "longitude": -97.7548891
+          },
+          "myLocation": "468 Congress Ave., Austin, TX 78701, USA",
+          "distance": "2.1 km",
+          "distanceValue": 2056
+        },
+        {
+          "name": "Austin Fire Station 6",
+          "address": "1705 S Congress Ave, Austin, TX 78704",
+          "coordinates": {
+            "latitude": 30.2465235,
+            "longitude": -97.7504288
+          },
+          "myLocation": "468 Congress Ave., Austin, TX 78701, USA",
+          "distance": "2.4 km",
+          "distanceValue": 2431
+        },
+        {
+          "name": "Austin Fire Station 2",
+          "address": "506 W Martin Luther King Jr Blvd, Austin, TX 78705",
+          "coordinates": {
+            "latitude": 30.282559,
+            "longitude": -97.7438089
+          },
+          "myLocation": "468 Congress Ave., Austin, TX 78701, USA",
+          "distance": "2.4 km",
+          "distanceValue": 2439
+        },
+        {
+          "name": "Austin Fire Station 7",
+          "address": "201 Chicon St, Austin, TX 78702",
+          "coordinates": {
+            "latitude": 30.2581816,
+            "longitude": -97.7239194
+          },
+          "myLocation": "468 Congress Ave., Austin, TX 78701, USA",
+          "distance": "2.8 km",
+          "distanceValue": 2799
+        }
+      ]
+    }
+  }
