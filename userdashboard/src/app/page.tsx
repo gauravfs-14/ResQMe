@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowRight, Shield, MessageSquare, Clock, Users, Bell } from "lucide-react"
+import { ArrowRight, Shield, MessageSquare, Clock, Users, Bell, Github } from "lucide-react"
 
 // import { Alert, AlertDescription } from "@/components/ui/alert"
 
@@ -44,7 +44,7 @@ export default function HomePage() {
                <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">
                  Simple, Fast, and Reliable
                </h2>
-              
+
              </div>
            </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -84,6 +84,32 @@ export default function HomePage() {
               </CardContent>
             </Card>
           </div>
+        </div>
+      </section>
+
+      <section className="w-full py-12 sm:py-16 bg-gradient-to-b from-red-50 to-red-100 dark:from-gray-900 dark:to-red-950/70 relative">
+        <div className="container px-4 sm:px-6 max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl sm:text-3xl font-bold tracking-tighter md:text-4xl mb-6 sm:mb-8 text-foreground">
+        How it works?
+          </h2>
+          <div className="mb-6 sm:mb-8 w-full aspect-video rounded-lg sm:rounded-xl overflow-hidden shadow-lg sm:shadow-xl">
+        <iframe
+          src="https://www.youtube.com/embed/your-video-id"
+          title="How ResQMe Works"
+          className="w-full h-full"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+          </div>
+            <Button
+          size="lg"
+          className="bg-red-600 hover:bg-red-700 text-white font-medium px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg rounded-full shadow-lg hover:shadow-xl transition-all"
+          asChild
+            >
+          <Link href="https://github.com/gauravfs-14/ResQMe" target="_blank" rel="noopener noreferrer">
+            View on GitHub <Github className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
+          </Link>
+            </Button>
         </div>
       </section>
 
