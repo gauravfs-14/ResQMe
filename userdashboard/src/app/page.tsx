@@ -10,7 +10,7 @@ import { Navbar } from "@/components/layout/navbar"
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-background">
-      <Navbar/>
+      {/* <Navbar/> */}
       {/* Hero Section - Using shadcn/ui components */}
       <section className="w-full h-[80vh] bg-gradient-to-b from-red-50 to-red-100 dark:from-gray-900 dark:to-red-950/70 relative flex items-center justify-center">
         <div className="container px-4 max-w-3xl mx-auto text-center">
@@ -21,11 +21,6 @@ export default function HomePage() {
             Emergency Help. Instantly.
           </h1>
 
-          {/* <Alert className="bg-red-100 border-red-200 dark:bg-red-950/30 dark:border-red-900/50 mb-6 max-w-md mx-auto">
-            <AlertDescription className="text-red-800 dark:text-red-300 text-sm font-medium">
-              Fast response when every second counts
-            </AlertDescription>
-          </Alert> */}
 
           <Button
             size="lg"
