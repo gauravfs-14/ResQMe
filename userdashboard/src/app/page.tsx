@@ -1,11 +1,11 @@
 import Link from "next/link"
 import { ArrowRight, Shield, MessageSquare, Clock, Users, Bell } from "lucide-react"
 
-import { Alert, AlertDescription } from "@/components/ui/alert"
+// import { Alert, AlertDescription } from "@/components/ui/alert"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Navbar } from "@/components/layout/navbar"
+// import { Navbar } from "@/components/layout/navbar"
 
 export default function HomePage() {
   return (

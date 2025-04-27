@@ -1,4 +1,4 @@
-// src/components/home/hero.tsx
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import { useState } from "react";

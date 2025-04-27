@@ -1,4 +1,4 @@
-// src/components/layout/footer.tsx
+/* eslint-disable react/no-unescaped-entities */
 import Link from "next/link";
 
 export function Footer() {
