@@ -6,12 +6,14 @@ import { ArrowRight, Shield, MessageSquare, Clock, Users, Bell } from "lucide-re
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 // import { Navbar } from "@/components/layout/navbar"
+import Chatbot  from "@/components/chatbot/chatbot"
 
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-background">
       {/* <Navbar/> */}
       {/* Hero Section - Using shadcn/ui components */}
+      <Chatbot/>
       <section className="w-full h-[80vh] bg-gradient-to-b from-red-50 to-red-100 dark:from-gray-900 dark:to-red-950/70 relative flex items-center justify-center">
         <div className="container px-4 max-w-3xl mx-auto text-center">
           <div className="mb-6 animate-pulse">
