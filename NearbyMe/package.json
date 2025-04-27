@@ -4,7 +4,9 @@
   "description": "",
   "main": "NearbyMe.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node NearbyMe.js",
+    "dev": "nodemon NearbyMe.js"
   },
   "author": "",
   "license": "ISC",
@@ -12,5 +14,8 @@
     "axios": "^1.9.0",
     "dotenv": "^16.5.0",
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
