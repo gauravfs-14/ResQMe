@@ -163,3 +163,9 @@ Would you like that? (just say: `yes, add env and examples too`) 🔥
 - **Gaurab Chhetri**  
   [GitHub Profile](https://github.com/gauravfs-14)
 
+- **Dipesh Pandit**
+  [Github Profile](https://github.com/dipeshpandit12)
+
+- **Diwas Pandit**
+  [Github Profile](https://github.com/diwaspandit)
+  
