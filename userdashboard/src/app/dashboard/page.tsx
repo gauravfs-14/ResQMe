@@ -21,7 +21,7 @@ import {
 import {
   Bell,
   User,
-  Settings,
+  
   PhoneCall,
   Clock,
   Activity,
