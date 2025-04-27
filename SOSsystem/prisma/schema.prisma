@@ -63,3 +63,18 @@ model DeviceInfo {
   usesLoopMessage Boolean
   userProfile     UserProfile?
 }
+
+model ChatHistory {
+  id        Int      @id @default(autoincrement())
+  phone     String
+  role      String // 'user' or 'assistant'
+  content   String
+  createdAt DateTime @default(now())
+
+  @@index([phone, createdAt])
+}
+
+model ConversationState {
+  phone String @id
+  state String
+}
