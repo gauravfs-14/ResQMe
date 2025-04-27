@@ -16,7 +16,7 @@ model UserProfile {
   gender                     String
   primaryLanguage            String
   phone                      String
-  email                      String
+  email                      String                    @unique
   medicalConditions          String[]
   allergies                  String[]
   currentMedications         Medication[] // One-to-many

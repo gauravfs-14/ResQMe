@@ -215,14 +215,15 @@ export default function ProfileForm({ user }: ProfileFormProps) {
     setIsSubmitting(true);
 
     saveProfile(formState)
-      .then(() => {
-        setSuccess(true);
-        setTimeout(() => setSuccess(false), 3000);
+      .then((res) => {
+        setSuccess(res.success);
+        setTimeout(() => setSuccess(true), 3000);
       })
       .catch((error) => {
         console.error("Error saving profile:", error);
         setSuccess(false);
       });
+    setIsSubmitting(false);
   };
 
   return (
