@@ -26,7 +26,7 @@ The goal: **rapid, context-aware emergency assistance with minimal user effort.*
 | Frontend      | Next.js, TailwindCSS, TypeScript             |
 | Backend       | Node.js (Express.js), Prisma ORM, TypeScript |
 | Database      | PostgreSQL                                   |
-| AI/Triage     | Local LLM API (Navigator / Ollama)           |
+| AI/Triage     | Local LLM API (Navigator by WebAI)           |
 | Messaging     | LoopMessage (for iMessage/SMS SOS triggers)  |
 | Deployment    | Render / Vercel (can be self-hosted too)     |
 | External APIs | SERP API (for Nearby Context)                |
@@ -138,19 +138,6 @@ Awesome! Here's your **Mini App Connection Diagram** + your earlier **Mini Apps 
 - **Automated Location Tracking:** Use device sensors/API integration for real-time movement tracking post-SOS.
 - **Incident Reporting Analytics:** Post-incident analytics for responders and city authorities.
 - **Decentralized Hosting:** Explore using P2P decentralized hosting for critical infrastructure resilience.
-
----
-
-Would you also like me to give you:
-
-- A `.env.example` template
-- Example **User Profile JSON**
-- Example **SOS Alert JSON**
-
-??  
-If yes, I can append them at the end of this README neatly too! 🚀
-
-Would you like that? (just say: `yes, add env and examples too`) 🔥
 
 ## 👥 Team Members
 
