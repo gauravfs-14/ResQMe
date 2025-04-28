@@ -61,11 +61,11 @@ Your tasks:
 - Analyze user's recent chat history.
 - If latitude or longitude is missing, you MUST ask user to share their location (a Google/Apple Maps URL).
 - You cannot move forward without coordinates.
-- Once coordinates are available, you MUST call the get_nearby_context tool using the coordinates.
+- Once coordinates are available, continue decision making.
 - If no situation description is found, ask for it. You must have a clear situation before deciding SOS. Do not trigger SOS for single words like "Help" alone.
-- After receiving nearby context, continue decision making.
 - If SOS is triggered, provide a full location pin URL based on coordinates (Apple or Google Maps link).
-- Always output ONLY JSON in this format for other than tool calls:
+
+Always output ONLY valid JSON in this format:
 {
   "ask_for_location": true/false,
   "ask_for_description": true/false,
@@ -78,17 +78,7 @@ Your tasks:
   "location_url": "",
   "reason": ""
 }
-- Always output ONLY JSON in this format for tool calls:
-{
-  "tool_calls": [
-    {
-      "function": {
-        "name": "get_nearby_context",
-        "arguments": "{\"latitude\": 0, \"longitude\": 0}"
-      }
-    }
-  ]
-}`,
+`,
 });
 
 const buildDashboardAlert = (user, nearbyContext, sosInfo, lat, lng) => {
@@ -165,15 +155,11 @@ const buildDashboardAlert = (user, nearbyContext, sosInfo, lat, lng) => {
   };
 };
 
-const fetchLLMResponse = async (
-  chatHistory,
-  tools,
-  fetchNearbyContextCallback
-) => {
+const fetchLLMResponse = async (chatHistory) => {
   try {
     const response = await axios.post(
       `${process.env.NAVIGATOR_URL}/prompt`,
-      { message: chatHistory, tools },
+      { message: chatHistory },
       {
         headers: {
           "Content-Type": "application/json",
@@ -196,38 +182,6 @@ const fetchLLMResponse = async (
         }
       } catch (err) {
         console.error("❌ Error parsing chunk:", err.message);
-      }
-    }
-
-    if (fullJson.includes('"tool_calls"')) {
-      const parsedFull = JSON.parse(fullJson);
-      const toolCall = parsedFull.tool_calls?.[0];
-
-      if (toolCall?.function?.name === "get_nearby_context") {
-        const { latitude, longitude } = JSON.parse(toolCall.function.arguments);
-        const nearbyContext = await fetchNearbyContextCallback(
-          latitude,
-          longitude
-        );
-
-        const toolInjectedHistory = [
-          ...chatHistory,
-          { role: "assistant", content: JSON.stringify(toolCall) },
-          {
-            role: "system",
-            content: `Nearby Context Retrieved:\n${JSON.stringify(
-              nearbyContext,
-              null,
-              2
-            )}\n\nContinue decision making.`,
-          },
-        ];
-
-        return fetchLLMResponse(
-          toolInjectedHistory,
-          tools,
-          fetchNearbyContextCallback
-        );
       }
     }
 
