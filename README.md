@@ -74,10 +74,6 @@ The goal: **rapid, context-aware emergency assistance with minimal user effort.*
 
 ---
 
-Awesome! Here's your **Mini App Connection Diagram** + your earlier **Mini Apps We Built** section — ready for README 🚀:
-
----
-
 ## 🧩 Mini Apps We Built
 
 | App Name                    | Description                                                                                                                                          | Link                                                           |
